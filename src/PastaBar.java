@@ -19,8 +19,19 @@ public class PastaBar {
 			sastojak = s.nextLine();
 			suma = findIngredient(sastojci, sastojak) + suma;
 		}
-		
-		System.out.println("Suma porudzbine je: " + suma);
+		System.out.print("Unesite Vas broj telefona: ");
+		String brojTelefonaMusterije = s.next();
+
+		if (isRegularCustomer(brojeviTelefonaStalnihMusterija, brojTelefonaMusterije)) {
+			System.out.println("Vasa pasta iznosi: " + (suma - (int)(suma*(10.0 / 100.0))) + "RSD " + 
+		"(objasnjenje: Ovaj korisnik ima popust od 10 posto.)");
+		} else { 
+			System.out.println("Vasa pasta iznosi: " + suma 
+			+ "RSD " + "(objasnjenje: Ovaj korisnik nema popust.)");
+			
+		}
+		System.out.print("Prijatno ! ");
+
 	}
 
 	public static int findIngredient(String[] ingredients, String ingredientName) {
@@ -31,6 +42,15 @@ public class PastaBar {
 			}
 		}
 		return 0;
+	}
+
+	public static boolean isRegularCustomer(String[] phoneNumbers, String phone) {
+		for (int i = 0; i < phoneNumbers.length; i++) {
+			if (phone.equals(phoneNumbers[i])) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
